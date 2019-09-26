@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width:100%;     
+    height: auto;
+}
+
+.content {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+
+.btn {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #ddd;
+  color: black;
+}
+</style>
+</head>
+<body>
+
+<video autoplay muted loop  id="myVideo">
+  <source src="source/videos/default.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+<div class="content">
+  <h1>Demo de Kraken</h1>
+  <p>Texto</p>
+  <button class="btn" id="myBtn" onclick="myFunction()">Pausar</button> 
+
+  <button class="btn" id="myBtn1" onclick="changeSource('source/videos/video1.mp4')">Video 1</button>
+  <button class="btn" id="myBtn2" onclick="changeSource('source/videos/video2.mp4')">Video 2</button>
+  <button class="btn" id="myBtn3" onclick="changeSource('source/videos/video3.mp4')">Video 3</button>
+  <button class="btn" id="myBtn3" onclick="changeSource('source/videos/video4.mp4')">Video 4</button>
+
+
+</div>
+
+<script>
+var video = document.getElementById("myVideo");
+var btn = document.getElementById("myBtn");
+var defaultVideo = "source/videos/default.mp4"; 
+var defaultWS = ""; // URL del WS donde se envian los cambios de video
+var machineID = "ABC001"; 
+
+function myFunction() {
+  if (video.paused) {
+    video.play();
+    btn.innerHTML = "Pausar";
+  } else {
+    video.pause();
+    btn.innerHTML = "Iniciar";
+  }
+}
+
+
+function changeSource(url) {
+   var video = document.getElementById('myVideo');
+   video.src = url;
+   video.loop = false;
+   video.play(); 
+ 
+   video.onended = function() { 
+    console.log("Terminó el video seleccionado")
+    video.src = defaultVideo;
+    video.play(); 
+
+   };
+}
+
+
+function connectToWS() {
+  // Mandar a cambiar source segun respuesta del WS
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+Colocar los videos en esta ubicación con el siguiente formato: 
+
+default.mp4
+video1.mp4
+video2.mp4
+video3.mp4
